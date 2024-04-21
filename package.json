@@ -7,6 +7,10 @@
     "start": "npm run build:live",
     "build": "tsc -p .",
     "build:live": "nodemon --watch 'src/**/*.ts' --exec \"ts-node\" src/index.ts",
+    "migrate:drizzle": "drizzle-kit generate:pg --config=./drizzle/config.ts",
+    "push:drizzle": "drizzle-kit push:pg --config=./drizzle/config.ts",
+    "migrate:prisma": "prisma migrate dev --create-only",
+    "push:prisma": "prisma migrate dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -14,6 +18,7 @@
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.11.28",
+    "drizzle-kit": "^0.20.17",
     "nodemon": "^3.1.0",
     "prisma": "^5.12.1",
     "ts-node": "^10.9.2",
@@ -24,6 +29,9 @@
     "npm": "10.5.0"
   },
   "dependencies": {
-    "@prisma/client": "^5.12.1"
+    "@neondatabase/serverless": "^0.9.1",
+    "@prisma/client": "^5.12.1",
+    "drizzle-orm": "^0.30.8",
+    "postgres": "^3.4.4"
   }
 }
