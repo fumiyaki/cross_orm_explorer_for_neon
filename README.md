@@ -9,7 +9,7 @@ CLI で何が出来るかをまとめます．
 ## prisma
 
 ```shell
-prisma --help
+>>> prisma --help
 
 ◭  Prisma is a modern DB toolkit to query, migrate and model your database (https://prisma.io)
 
