@@ -1,6 +1,9 @@
 # このリポジトリについて
 
-Neon を使用した drizzle と Prisma を比較するためのリポジトリです．
+DB: Neon
+Migration: drizzle, Prisma
+ORM: gorm, sqlx, sqlc
+を使用して比較するためのリポジトリです．
 
 # CLI
 
