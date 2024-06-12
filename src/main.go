@@ -1,13 +1,16 @@
 package main
 
 import (
-	"database/sql"
+	"context"
 	"fmt"
 	"log"
 	"os"
 
+	"github.com/fumiyaki/cross_orm_explorer_for_neon/src/gorm/generated"
 	"github.com/joho/godotenv"
-	_ "github.com/lib/pq"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 )
 
 func main() {
@@ -20,16 +23,21 @@ func main() {
 		fmt.Println("DATABASE_URL is not set")
 	}
 
-	db, err := sql.Open("postgres", connStr)
+	db, err := gorm.Open(postgres.Open(connStr), &gorm.Config{
+		Logger: logger.Default.LogMode(logger.Info),
+	})
+
 	if err != nil {
-		panic(err)
-	}
-	defer db.Close()
-
-	var version string
-	if err := db.QueryRow("select version()").Scan(&version); err != nil {
-		panic(err)
+		log.Fatal("failed to connect database:", err)
 	}
 
-	fmt.Printf("version=%s\n", version)
+	query := generated.Use(db)
+
+	ctx := context.Background()
+	userData, err := query.User.WithContext(ctx).Where(query.User.ID.Eq(1)).First()
+	if err != nil {
+		log.Fatal("failed to get user data:", err)
+	}
+
+	fmt.Printf("User Data: %+v\n", userData)
 }
