@@ -100,3 +100,22 @@ Commands:
   studio [options]
   help [command]               display help for command
 ```
+
+# ORM
+
+CRUD 処理とテーブル JOIN を試し ORM 特有の書き心地と Raw SQL の使い心地を検証します．
+ドキュメントの分かりやすさ．充実度も確認します．
+
+## gorm
+
+ドキュメントは分かりづらい．
+`user := User{Name: "Jinzhu", Age: 18, Birthday: time.Now()}`
+の User どっから来たんだなど
+
+説明も最低限で薄い気がする．
+
+そして結局，色々触ったがうまく動かせなかった．無念…
+
+## sqlx
+
+## sqlc
